@@ -1,0 +1,63 @@
+<div class="root">
+
+  <!-- Navbar of the project -->
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="app-name has-gradient-text">Trello</h1>
+      </div>
+    </div>
+  </div>
+  <!-- End of the Project -->
+
+  <!-- Start a Board -->
+  <div class="board">
+    <div class="board-wrapper" cdkDropListGroup>
+      <div class="board-columns">
+        <!-- One Board user Details -->
+        <div class="board-column" *ngFor="let column of board.columns">
+          <!-- Board Title -->
+          <div class="column-title">
+            <div> {{column.name}}</div>
+          </div>
+          <!-- Card Title -->
+          <div class="tasks-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+            <div class="task" *ngFor="let item of column.tasks; let ind = index" cdkDrag>
+              <div class="user-detail">
+                <!-- Card Heading -->
+                <div class="head">
+                  <div> {{item.head}} </div>
+                  <div (click)="removeUserDetail(column.tasks ,ind)"><img src="./assets/cancel.png" /></div>
+                </div>
+                
+                <!-- user Content -->
+                <div class="user-content">
+                  <div class="user-pic">
+                    <img src={{item.img}} alt="user-picture" />
+                  </div>
+                  <h5>{{item.userName}}</h5>
+                  <p>{{item.text}}</p>
+                </div>
+
+                <div class="choose">
+                  <div class="selected">
+                    <img src="./assets/right.jpg" />
+                    <img src="./assets/1.jpg" />
+                    <img src="./assets/7.jpg" />
+                    <img src="./assets/24.jpg" />
+                  </div>
+                  <div class="rejected">
+                    <img src="./assets/wrong.jpeg" />
+                    <img src="./assets/24.jpg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of the particular board Details -->
+    </div>
+  </div>
+  <!-- end Of the Board -->
+</div>
